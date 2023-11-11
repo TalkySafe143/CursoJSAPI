@@ -15,7 +15,7 @@ router.get("/", async (req, res, next) => {
 });
 
 router.get("/:id", async (req, res, next) => {
-    const data = await mongo.getOne("users", {_id : new ObjectId(req.params.id)});
+    const data = await mongo.getOne("users", {email : req.params.id});
     return res.status(200).json({
         data
     })
@@ -29,14 +29,14 @@ router.post("/", async (req, res, next) => {
 })
 
 router.put("/:id", async (req, res, next) => {
-    const data = await mongo.updateOne("users", req.body ,{_id : new ObjectId(req.params.id)});
+    const data = await mongo.updateOne("users", req.body ,{email : req.params.id});
     return res.status(200).json({
         data
     })
 })
 
 router.delete("/:id", async (req, res, next) => {
-    const data = await mongo.deleteOne("users", {_id : new ObjectId(req.params.id)});
+    const data = await mongo.deleteOne("users", {email : req.params.id});
     return res.status(200).json({
         data
     })
